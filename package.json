@@ -4,7 +4,9 @@
   "description": "2022 Melbourne Hack Online Poll Demo App",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start:api": "nodemon index.js",
+    "start:frontend": "cd frontend && npm start",
+    "start": "concurrently npm:start:*",
     "test": "echo We don't have tests :)"
   },
   "repository": {
@@ -18,7 +20,11 @@
   },
   "homepage": "https://github.com/HackMelbourne/2022-Melbourne-Hack-Full-Stack-App#readme",
   "dependencies": {
-    "express": "^4.17.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
     "nodemon": "^2.0.15"
   }
 }
