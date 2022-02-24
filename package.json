@@ -1,0 +1,24 @@
+{
+  "name": "online-poll",
+  "version": "1.0.0",
+  "description": "2022 Melbourne Hack Online Poll Demo App",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo We don't have tests :)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackMelbourne/2022-Melbourne-Hack-Full-Stack-App.git"
+  },
+  "author": "HackMelbourne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HackMelbourne/2022-Melbourne-Hack-Full-Stack-App/issues"
+  },
+  "homepage": "https://github.com/HackMelbourne/2022-Melbourne-Hack-Full-Stack-App#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
