@@ -18,11 +18,13 @@ function App() {
             
             socket.on("connected", data => {
                 console.log("connected")
+                console.log(JSON.stringify(data))
                 setResponses(data);
             });
 
             socket.on("receive-response", data => {
                 console.log("receive-response")
+                console.log(JSON.stringify(data))
                 setResponses(data);
             });
         }
