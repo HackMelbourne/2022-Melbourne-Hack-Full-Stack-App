@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
     //socket will display a student's messages to all students. 
     socket.on('send-response', newResponse =>{
         //update percentages
-        updateResponses(responses, newResponse, totalResponses);
+        updateResponses(responses, newResponse);
         //send the data back to the client
         io.emit('receive-response', responses);
     })
