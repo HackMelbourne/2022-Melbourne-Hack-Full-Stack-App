@@ -1,44 +1,42 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const http = require("http");
 const server = http.createServer(app);
 
-// CORS
-const io = require('socket.io')(server, {cors: {origin: "*"}});
-var cors = require('cors');
-app.use(cors()); // add this line
+/** CORS */
+const io = require("socket.io")(server, { cors: { origin: "*" } });
+var cors = require("cors");
+app.use(cors());
 
-let responses = {};
+let responses = {};  // dictionary to hold responses eg. {"Movie Title 1": 5, "Movie Title 2": 3, ...}
 
-//this function is to count the percentage for the given response
-function updateResponses(responses, newResponse){
-  //update the percentage for this response
-  // TODO XY: we need to update the percentage of all responses when a new response is added
-  if (newResponse in responses){
-    responses[newResponse] += 1;
-    return;
-  }
-
-  responses[newResponse] = 1;
-  return;
+/** Updated the responses */
+function updateResponses(responses, newResponse) {
+    // add the `newResponse` to the resposes dictionary 
+    //  (similar to how we update Python dictionarys)
+    if (newResponse in responses) {
+        responses[newResponse] += 1;
+    } else {
+        responses[newResponse] = 1;
+    }
 }
 
-//whenever a client interact with the socket, the on function below will get called.
+/** When the `connection` event is triggered */
 io.on("connection", (socket) => {
-    //send the data back to the client
-    socket.emit('connected', responses);
+    // send responses to the current client
+    socket.emit("receive-response", responses);
 
-    //socket will display a student's messages to all students. 
-    socket.on('send-response', newResponse =>{
-        //update percentages
+    // when a `send-response` event it triggered
+    socket.on("send-response", (newResponse) => {
+        // update `responses`
         updateResponses(responses, newResponse);
-        //send the data back to the client
-        io.emit('receive-response', responses);
-    })
+        // broadcasts updated `responses` dictionary to all clients
+        io.emit("receive-response", responses);
+    });
 });
 
-const PORT = process.env.PORT;
+const PORT = 8000;
 server.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
+    console.log(`App listening on port ${PORT}!`);
 });
