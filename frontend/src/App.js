@@ -75,6 +75,36 @@ function App() {
                 >
                     Submit
                 </button>
+                <button
+                    onClick={()=>{
+                        function exportJSONToCSV(objArray) {
+                            var arr = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
+                            var str =
+                                `${Object.keys(arr[0])
+                                    .map((value) => `"${value}"`)
+                                    .join(',')}` + '\r\n';
+                            var csvContent = arr.reduce((st, next) => {
+                                st +=
+                                    `${Object.values(next)
+                                        .map((value) => `"${value}"`)
+                                        .join(',')}` + '\r\n';
+                                return st;
+                            }, str);
+                            var element = document.createElement('a');
+                            element.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+                            element.target = '_blank';
+                            element.download = 'export.csv';
+                            element.click();
+                        }
+                        exportJSONToCSV(Object.entries(responses).map(([key, value]) => ({
+                            "Movie": key,
+                            "Responses": value
+                        })));
+                    }}
+                    className="submit-button"
+                >
+                    Download
+                </button>
             </form>
             
             <hr></hr>
