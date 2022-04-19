@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+:root {
+    background-color: #f9f6f2ff;
+    font-family: "Open Sans", sans-serif;
+}
+
 .App {
     text-align: center;
+    
 }
 
 .App-header {
@@ -12,23 +20,82 @@
     color: white;
 }
 
-label {
+/* FORM */
+.movie-label {
     font-size: 1rem;
 }
 
-input {
+.movie-input {
     font-size: 1.2rem;
     padding: 0.5rem;
     margin: 0.5rem;
 }
 
-button {
-    font-size: 1rem;
-    padding: 0.5rem;
+.submit-button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 1rem;
     margin: 0.5rem;
+    font-size: 1rem;
     border: none;
+    border-radius: 0.5rem;
 }
 
-button:hover {
+.submit-button:hover {
+    background-color: #0e9e69;
     cursor: pointer;
+}
+
+/* CARDS */
+.response-card {
+    border: 0.1rem solid #0e9e69;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 80%;
+    margin-left: 10%;
+    justify-content: center;
+}
+
+/* TABLE */
+.responses-table {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.responses-table td, .responses-table th {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.responses-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.responses-table tr:hover {
+    background-color: #ddd;
+}
+
+/* BARCHART */
+.barchart-container {
+    display: flex;
+    gap: 0.5rem;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
