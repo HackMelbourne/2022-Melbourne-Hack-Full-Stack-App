@@ -10,7 +10,9 @@ function App() {
 
     /** ⚡ Connecting to Backend */
     const [socket, setSocket] = useState(null);
+    /** useEffect is called after render */
     useEffect(() => {
+        console.log("useEffect called")
         // Create and establish a connection to the socketio server
         const ENDPOINT = "http://localhost:8000";
         const socket = io(ENDPOINT);
@@ -24,12 +26,25 @@ function App() {
                 setResponses(data);
             });
         }
-    }, [setResponses]);
+    }, []);
 
     /** Called when the 'Submit' button is clicked */
     function handleSubmit(event) {
         event.preventDefault(); // skip default behaviour
-        socket.emit("send-response", movieInput);
+
+        /** If we don't have a backend
+        let newResponses = {...responses}; // make a copy of the responses
+
+        // similar to how we increment in a Python dictionary
+        if (movieInput in responses) { 
+            newResponses[movieInput] += 1;
+        } else {
+            newResponses[movieInput] = 1;
+        }
+        setResponses(newResponses);
+         */
+
+        socket.emit("send-response", movieInput);    // ⚡ trigger the `send-response` event
         setMovieInput('');  // make input box empty
     }
 
