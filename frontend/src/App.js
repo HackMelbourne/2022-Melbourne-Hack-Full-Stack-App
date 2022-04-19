@@ -1,6 +1,6 @@
 import './App.css';
-import { useState, useEffect } from "react";
-import { io } from 'socket.io-client';
+import {useEffect, useState} from "react";
+import {io} from 'socket.io-client';
 import Bar from './components/Bar';
 import ResponseCard from './components/ResponseCard';
 
@@ -14,7 +14,7 @@ function App() {
     useEffect(() => {
         console.log("useEffect called")
         // Create and establish a connection to the socketio server
-        const ENDPOINT = "http://localhost:8000";
+        const ENDPOINT = "http://server.ryan-s.me:8000";
         const socket = io(ENDPOINT);
         
         if (socket) {
