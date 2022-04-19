@@ -43,7 +43,8 @@ function App() {
         }
         setResponses(newResponses);
          */
-
+        if(!movieInput)
+            return;
         socket.emit("send-response", movieInput);    // ⚡ trigger the `send-response` event
         setMovieInput('');  // make input box empty
     }
@@ -52,7 +53,7 @@ function App() {
     return (
         <div className="App">
             <h1>Favourite Movie Poll</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={e=>e.preventDefault()}>
                 <label
                     className="movie-label"
                 >
@@ -70,7 +71,7 @@ function App() {
                 />
                 <br></br>
                 <button
-                    type="submit" 
+                    onClick={handleSubmit}
                     className="submit-button"
                 >
                     Submit
